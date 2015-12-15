@@ -1,4 +1,12 @@
+body{
+	background-color: #80b2ff;
+	font-style: Helvetica, sans-serif;
+}
+h1 {
+	text-align: center;
+}
 .fruitContainer {
+	text-align: center;
 	position: relative;
 	margin: 0 auto;
 }
@@ -7,10 +15,22 @@
 	margin: 0 auto;
 	padding: 25px;
 	width: 200px;
+	text-align: center;
+	background-color: white;
+	border: 2px solid black;
+	border-radius: 5px;
 }
-.stats {
-	position: absolute;
-	right: 25px;
+.box {
+
+	background-color: white;
+	border: 2px solid black;
+	border-radius: 5px;
+	text-align: center;
+	display: inline-block;
+	width: 240px;
+	margin-top: 5px;
+	padding: 5px;
+
 }
 .averagePrice {
 	position: relative;
@@ -19,13 +39,15 @@
 }
 button {
 	width: 100%;
+	margin: 2px;
+	padding: 5px;
 }
 #endscore {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	background-color: white;
-	z-index: 3000;
+	z-index: 600000000;
 	top: 0px;
 	left: 0px;
 	text-align: center;
@@ -41,5 +63,25 @@ img {
 }
 .notenough {
 	position: absolute;
-	left: 40%;
+	left: 20%;
+	top: 50%;
+	z-index: 330393939339;
+	background-color: white;
+	border: 1px solid black;
+	font-size: 50px;
+	padding: 5px;
+}
+.fruity {
+	font-size: 20px;
+}
+h3 {
+	font-size: 25px;
+}
+.cashbox {
+	margin: 5px;
+	display: inline-block;
+	background-color: white;
+	border: 2px solid black;
+	border-radius: 5px;
+	width: 1025px;
 }

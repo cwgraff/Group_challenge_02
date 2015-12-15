@@ -5,8 +5,8 @@ function randomNumber(min, max) {
 }
 // click counter still adds even after money is gone
 
-var array = [{name: "apple", clicks: 0, moneySpent: 0}, {name: "orange", clicks: 0, moneySpent: 0},
-{name: "banana", clicks: 0, moneySpent: 0}, {name: "pear", clicks: 0, moneySpent: 0}];
+var array = [{name: "apple", clicks: 0, moneySpent: 0, purchasedCount: 0}, {name: "orange", clicks: 0, moneySpent: 0, purchasedCount: 0},
+{name: "banana", clicks: 0, moneySpent: 0, purchasedCount: 0}, {name: "pear", clicks: 0, moneySpent: 0, purchasedCount: 0}];
 
 // Randomly change all current prices + / - .50
 $(function(){
@@ -27,7 +27,6 @@ $(function(){
 					fruitPrices[i] = 0.50;
 				}
 				fruitPrices[i] = Math.round(fruitPrices[i] * 100)/100;
-				console.log(fruitPrices[i]);
 
 				$('#' + array[i]['name']).text('Current ' + array[i]['name'] + ' cost: $' + fruitPrices[i].toFixed(2));
 				};
@@ -56,13 +55,14 @@ $(function(){
 			clearInterval(repeatStocks);
 
 			for(i=0; i < fruitPrices.length; i++){
-				userMoney += array[i]['clicks'] * fruitPrices[i];
+				userMoney += array[i]['purchasedCount'] * fruitPrices[i];
 			};
 		
 			$('body').append('<div id="endscore"><h1>You ended with: $' + Math.round(userMoney*100)/100 + '</h1><br><br><button id="resetgame">Restart</button></div>');
 			$('#resetgame').on('click', function(){
 				location.reload();
 			});
+
 	}, 300000);
 
 		function ifZero(buttonName, arraynum){
@@ -82,21 +82,22 @@ $(function(){
 			} else {
 				array[foo]['moneySpent'] += fruitPrices[foo];
 				array[foo]['clicks']++;
-				$('.' + array[foo]['name'] + 'avgcost').text('Average ' + array[foo]['name'] + ' cost: ' + Math.round((array[foo]['moneySpent'] / array[foo]['clicks']) * 100)/100);
+				array[foo]['purchasedCount']++;
+				$('.' + array[foo]['name'] + 'avgcost').text('Average ' + array[foo]['name'] + ' cost: ' + Math.round((array[foo]['moneySpent'] / array[foo]['purchasedCount']) * 100)/100);
 				userMoney -= fruitPrices[foo];
 				$('.cash').text('Total Available Cash: $' + Math.round(userMoney*100)/100);
 				if(userMoney <= 0){
 					userMoney = 0;
 					$('.cash').text('Total Available Cash: $' + userMoney);
 				}
-				$('.' + array[foo]['name'] + 'count').text(array[foo]['name'] + 's: ' + array[foo]['clicks']);
+				$('.' + array[foo]['name'] + 'count').text(array[foo]['clicks']);
 			}
 		};
 
 		function sellFruit(fooTwo) {
 			if(array[fooTwo]['clicks'] > 0){
 				array[fooTwo]['clicks']--;
-				$('.' + array[fooTwo]['name'] + 'count').text(array[fooTwo]['name'] + 's: ' + array[fooTwo]['clicks']);
+				$('.' + array[fooTwo]['name'] + 'count').text(array[fooTwo]['clicks']);
 				userMoney += fruitPrices[fooTwo];
 				$('.cash').text('Total Available Cash: $' + Math.round(userMoney*100)/100);
 			};
@@ -105,7 +106,3 @@ $(function(){
 			}
 		};
 });
-
-
-	// Apple Orange Banana Pear
-
