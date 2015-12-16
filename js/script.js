@@ -55,7 +55,7 @@ $(function(){
 			clearInterval(repeatStocks);
 
 			for(i=0; i < fruitPrices.length; i++){
-				userMoney += array[i]['purchasedCount'] * fruitPrices[i];
+				userMoney += array[i]['clicks'] * fruitPrices[i];
 			};
 		
 			$('body').append('<div id="endscore"><h1>You ended with: $' + Math.round(userMoney*100)/100 + '</h1><br><br><button id="resetgame">Restart</button></div>');
